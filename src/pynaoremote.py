@@ -142,6 +142,125 @@ def ActionMoveForward(motionProxy, postureProxy, vitesse, post=False):
         motionProxy.post.setWalkTargetVelocity(X, Y, Theta, Frequency)
     else:
         motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
+
+def ActionLeft(motionProxy, postureProxy, vitesse, post=False):
+    # Set NAO in Stiffness On
+    StiffnessOn(motionProxy)
+
+    # Send NAO to Pose Init
+    postureProxy.goToPosture("StandInit", 0.5)
+
+    #####################
+    ## Enable arms control by Walk algorithm
+    #####################
+    motionProxy.setWalkArmsEnabled(True, True)
+    #~ motionProxy.setWalkArmsEnabled(False, False)
+
+    #####################
+    ## FOOT CONTACT PROTECTION
+    #####################
+    #~ motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
+    motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
+
+    #TARGET VELOCITY
+    X = 0
+    Y = 0.5
+    Theta = 0.0
+    Frequency = 0.0 # low speed
+    if post == True:
+        motionProxy.post.setWalkTargetVelocity(X, Y, Theta, Frequency)
+    else:
+        motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
+        
+def ActionRight(motionProxy, postureProxy, vitesse, post=False):
+    # Set NAO in Stiffness On
+    StiffnessOn(motionProxy)
+
+    # Send NAO to Pose Init
+    postureProxy.goToPosture("StandInit", 0.5)
+
+    #####################
+    ## Enable arms control by Walk algorithm
+    #####################
+    motionProxy.setWalkArmsEnabled(True, True)
+    #~ motionProxy.setWalkArmsEnabled(False, False)
+
+    #####################
+    ## FOOT CONTACT PROTECTION
+    #####################
+    #~ motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
+    motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
+
+    #TARGET VELOCITY
+    X = 0
+    Y = -0.5
+    Theta = 0
+    Frequency = 0.0 # low speed
+    if post == True:
+        motionProxy.post.setWalkTargetVelocity(X, Y, Theta, Frequency)
+    else:
+        motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
+        
+        
+def ActionRotateRight(motionProxy, postureProxy, vitesse, post=False):
+    # Set NAO in Stiffness On
+    StiffnessOn(motionProxy)
+
+    # Send NAO to Pose Init
+    postureProxy.goToPosture("StandInit", 0.5)
+
+    #####################
+    ## Enable arms control by Walk algorithm
+    #####################
+    motionProxy.setWalkArmsEnabled(True, True)
+    #~ motionProxy.setWalkArmsEnabled(False, False)
+
+    #####################
+    ## FOOT CONTACT PROTECTION
+    #####################
+    #~ motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
+    motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
+
+    #TARGET VELOCITY
+    X = 0
+    Y = 0
+    Theta = -0.2
+    Frequency = 0.0 # low speed
+    if post == True:
+        motionProxy.post.setWalkTargetVelocity(X, Y, Theta, Frequency)
+    else:
+        motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
+        
+        
+def ActionRotateLeft(motionProxy, postureProxy, vitesse, post=False):
+    # Set NAO in Stiffness On
+    StiffnessOn(motionProxy)
+
+    # Send NAO to Pose Init
+    postureProxy.goToPosture("StandInit", 0.5)
+
+    #####################
+    ## Enable arms control by Walk algorithm
+    #####################
+    motionProxy.setWalkArmsEnabled(True, True)
+    #~ motionProxy.setWalkArmsEnabled(False, False)
+
+    #####################
+    ## FOOT CONTACT PROTECTION
+    #####################
+    #~ motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
+    motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
+
+    #TARGET VELOCITY
+    X = 0
+    Y = 0
+    Theta = 0.2
+    Frequency = 0.0 # low speed
+    if post == True:
+        motionProxy.post.setWalkTargetVelocity(X, Y, Theta, Frequency)
+    else:
+        motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
+
 def ActionStop(motionProxy, postureProxy):
     X = 0
     Y = 0
@@ -211,7 +330,16 @@ def main(robotIP, cmd, arg1, arg2, arg3):
         ActionMoveBackward(motionProxy, postureProxy, 0.5)
     elif cmd == "stop":
         ActionStop(motionProxy, postureProxy)
+    elif cmd == "right":
+        ActionRight(motionProxy, postureProxy, 0.5, False)
+    elif cmd == "left":
+        ActionLeft(motionProxy, postureProxy, 0.5, False)
+    elif cmd == "rotateleft":
+        ActionRotateLeft(motionProxy, postureProxy, 0.5, False)
+    elif cmd == "rotateright":
+        ActionRotateRight(motionProxy, postureProxy, 0.5, False)
 
+        
     #ActionSit(motionProxy, postureProxy,1.0)
     #ActionLyingBack(motionProxy, postureProxy,1.0)
     #ActionLyingBelly(motionProxy, postureProxy,1.0)
