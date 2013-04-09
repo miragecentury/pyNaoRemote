@@ -107,7 +107,7 @@ def ActionMoveBackward(motionProxy, postureProxy, vitesse, post=False):
     #TARGET VELOCITY
     X = -0.5
     Y = 0
-    Theta = -0.035
+    Theta = 0.0
     Frequency = 0.2 # low speed
     if post == True:
         motionProxy.post.setWalkTargetVelocity(X, Y, Theta, Frequency)
@@ -134,9 +134,9 @@ def ActionMoveForward(motionProxy, postureProxy, vitesse, post=False):
     motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", False]])
 
     #TARGET VELOCITY
-    X = 0.5
+    X = 1.0
     Y = 0
-    Theta = 0.035
+    Theta = 0.0
     Frequency = 0.2 # low speed
     if post == True:
         motionProxy.post.setWalkTargetVelocity(X, Y, Theta, Frequency)
@@ -273,11 +273,16 @@ def ActionSay(tts, text, speed, post=False):
         tts.post.say(text)
     else:
         tts.say(text)
-def ActionRunBehavior(behaviorManagerProxy, name):
+def ActionRunPostBehavior(behaviorManagerProxy, name):
     if behaviorManagerProxy.isBehaviorRunning(name):
         behaviorManagerProxy.stopBehavior(name)
     behaviorManagerProxy.post.runBehavior(name)
-    
+
+def ActionRunBehavior(behaviorManagerProxy, name):
+    if behaviorManagerProxy.isBehaviorRunning(name):
+        behaviorManagerProxy.stopBehavior(name)
+    behaviorManagerProxy.runBehavior(name)
+
 def ActionStopBehavior(behaviorManagerProxy, name):
     behaviorManagerProxy.stopBehavior(name)
     
@@ -338,7 +343,24 @@ def main(robotIP, cmd, arg1, arg2, arg3):
         ActionRotateLeft(motionProxy, postureProxy, 0.5, False)
     elif cmd == "rotateright":
         ActionRotateRight(motionProxy, postureProxy, 0.5, False)
-
+    elif cmd == "scenario":
+        ActionRunBehavior(behaviorManagerProxy, "leverRideau")
+        time.sleep(15)
+        ActionStand(motionProxy, postureProxy, 0.5)
+        ActionMoveForward(motionProxy, postureProxy, 0.5)
+        time.sleep(4)
+        ActionStop(motionProxy, postureProxy)
+        ActionRunBehavior(behaviorManagerProxy, "direBonjour")
+        time.sleep(8)
+        tts.say("Je tiens à remercier le président Pierre André et vous souhaiter une bonne soirée numérique.")
+        tts.say("Je m'appelle NAO et Matthieu s'occupe de moi à l'In set.")
+        tts.say("Je n'ai pas eu le temps de répéter mais je vais vous faire une petite démo.")
+        time.sleep(3)
+        ActionRunBehavior(behaviorManagerProxy, "dance")
+        time.sleep(50)
+        ActionStand(motionProxy, postureProxy, 1.0)
+        time.sleep(20)
+        tts.say("Je vous invite à venir me voir à la fin de la cérémonie, à tout à l'heure")
         
     #ActionSit(motionProxy, postureProxy,1.0)
     #ActionLyingBack(motionProxy, postureProxy,1.0)
@@ -357,12 +379,7 @@ def main(robotIP, cmd, arg1, arg2, arg3):
     #ActionRunBehavior(behaviorManagerProxy, "playMusic")
     #ActionStopBehavior(behaviorManagerProxy, "playMusic")
 
-
-    #tts.say("Benoit! Moustafa! Vous m'avez oublier? En plus, il fait chaud la dessous!")
-    #tts.say("Je tiens à remercier le président Pierre André et souhaite à tous une bonne soirée numérique.")
-    #tts.say("Je m'appelle NAO et Matthieu s'occupe de moi à l'In set.")
-    #tts.say("Je n'ai pas eu le temps de répéter mais je vais vous faire une petite démo.")
-
+    
     
 
 
