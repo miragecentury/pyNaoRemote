@@ -96,7 +96,7 @@ class Remote:
         elif posture == "standinit":
             self.Posture_StandInit(post)
         elif posture == "standzero":
-            
+            self.Posture_StandZero(post)
         elif posture == "stand":
             self.Posture_Stand(post)
         else:
@@ -191,7 +191,7 @@ class Remote:
             print "Err: 003 : Erreur de Chargement des Proxy lors de l utilisation"
 
     def Say(self,text):
-        sefl.textToSpeechProxy.say(text)
+        self.textToSpeechProxy.say(text)
 
 class Information:
     def __init__(self, robotIp):

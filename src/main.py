@@ -6,22 +6,31 @@
 __author__ = "mirage"
 __date__ = "$10 avr. 2013 09:01:28$"
 
+import sys
+
 from Insset import Nao
 
+def cmd(argv,pt):
+    print pt
+
 if __name__ == "__main__":
-    robotIp = "saintquentinnao.local"
+    robotIp = "nao.local"
     remote = Nao.Remote(robotIp)
 
-    if len(sys.argv) <= 1:
+    if len(sys.argv) <= 1 :
         print "-h pour avoir l'aide"
     else:
-        if len(sys.argv) <= 2:
+        if len(sys.argv) >= 1:
             
-            if sys.argv[2] == "-h":
+            if sys.argv[1] == "-h":
                 print "L'aide ne vous aidera pas."
-            else:
+            elif sys.argv[1] == "-c" and len(sys.argv) >= 2:
+                cmd = sys.argv[2]
                 if cmd == "say":
-                    remote.Say(text)
+                    if len(sys.argv) >= 3:
+                        remote.Say(sys.argv[3])
+                    else:
+                        print sys.argv[3]
                 elif cmd == "sit":
                     remote.setPosture("sit", False)
                 elif cmd == "stand":
@@ -29,7 +38,7 @@ if __name__ == "__main__":
                 elif cmd == "crouch":
                     remote.setPosture("crouch", False)
                 elif cmd == "lyingbelly":
-                    remote.setPosture("crouch", False)
+                    remote.setPosture("lyingbelly", False)
                 elif cmd == "forward":
                     print "notimplement"
                 elif cmd == "backward":
@@ -50,3 +59,7 @@ if __name__ == "__main__":
                     print "notimplement"
                 else:
                     print "none"
+            else:
+                print sys.argv[1]
+        else:
+            print len(sys.argv)
