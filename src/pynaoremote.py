@@ -333,6 +333,10 @@ def main(robotIP, cmd, arg1, arg2, arg3):
         ActionMoveForward(motionProxy, postureProxy, 0.5)
     elif cmd == "backward":
         ActionMoveBackward(motionProxy, postureProxy, 0.5)
+    elif cmd == "lyingbelly":
+        ActionLyingBelly(motionProxy, postureProxy, 0.5);
+    elif cmd == "lyingback":
+        ActionLyingBack(motionProxy, postureProxy, 0.5);
     elif cmd == "stop":
         ActionStop(motionProxy, postureProxy)
     elif cmd == "right":
@@ -370,20 +374,20 @@ def main(robotIP, cmd, arg1, arg2, arg3):
     #ActionLyingBelly(motionProxy, postureProxy,1.0)
     #ActionSitRelax(motionProxy, postureProxy,1.0)
     #ActionStandInit(motionProxy, postureProxy,1.0)
-    #ActionStandZero(motionProxy, postureProxy,1.0)
-    #ActionStand(motionProxy, postureProxy,1.0)
-    #ActionCrouch(motionProxy, postureProxy, 1.0, True)
-    #ActionSay(tts, "Lundi. Mardi. Mercredi. Jeudi. Vendredi. Samedi. Dimanche.", 0,True)
-    #ActionMoveForward(motionProxy, postureProxy,0.0,True)
-    #ActionMoveBackward(motionProxy, postureProxy,0.0,True)
-    #ActionSay(tts, "Lundi. Mardi. Mercredi. Jeudi. Vendredi. Samedi. Dimanche.", 0,True)
-    #time.sleep(10)
-    #ActionStop(motionProxy, postureProxy)  
-    #ActionRunBehavior(behaviorManagerProxy, "playMusic")
-    #ActionStopBehavior(behaviorManagerProxy, "playMusic")
+        #ActionStandZero(motionProxy, postureProxy,1.0)
+        #ActionStand(motionProxy, postureProxy,1.0)
+        #ActionCrouch(motionProxy, postureProxy, 1.0, True)
+        #ActionSay(tts, "Lundi. Mardi. Mercredi. Jeudi. Vendredi. Samedi. Dimanche.", 0,True)
+        #ActionMoveForward(motionProxy, postureProxy,0.0,True)
+        #ActionMoveBackward(motionProxy, postureProxy,0.0,True)
+        #ActionSay(tts, "Lundi. Mardi. Mercredi. Jeudi. Vendredi. Samedi. Dimanche.", 0,True)
+        #time.sleep(10)
+        #ActionStop(motionProxy, postureProxy)
+        #ActionRunBehavior(behaviorManagerProxy, "playMusic")
+        #ActionStopBehavior(behaviorManagerProxy, "playMusic")
 
-    
-    
+
+
 
 
 
